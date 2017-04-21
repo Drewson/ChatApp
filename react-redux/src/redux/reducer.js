@@ -1,20 +1,31 @@
 import {
-    ADD_MESSAGE
+    ADD_MESSAGE,
+    REMOVE_MESSAGE
 } from './actions';
 
-
-const initialState = {
-    messages: [
-        { text: 'hello world', user: 'mr moop'}
-    ]
-}
-
-export default function(state = initialState, action){
+export function MessagesReducer(state = [], action){
     switch(action.type){
         case ADD_MESSAGE:
-            const messages = [...state.messages, { text: action.message, user: 'Jimbo' } ];
-            return {...state, messages};
+            return [...state, { text: action.message, user: 'Jimbo', visible: action.visible } ];
         default:
+            return state;
+    }
+}
+
+export function UsersReducer( state = [], action ) {
+    switch(action.type) {
+        default:
+            return state;
+    }
+}
+
+export function RemoveReducer( state = [ { visible: true } ], action ){
+    switch(action.type){
+        case REMOVE_MESSAGE:
+            return [...state, {
+                visible: action.visible
+            }];
+        default: 
             return state;
     }
 }
